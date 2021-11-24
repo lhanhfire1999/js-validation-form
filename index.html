@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="main">
+    <form action="" method="post" class="form" id="register-form">
+      <header>
+        <h3 class="heading">Thành viên đăng ký</h3>
+        <p class="description">Cùng nhau học lập trình miễn phí tại F8 ❤️</p>
+      </header>
+  
+      <div class="spacer"></div>
+  
+      <div class="form-group">
+        <label for="fullname" class="form-label">Tên đầy đủ:</label>
+        <input type="text" name="fullname" id="fullname" rules="required" class="form-control" placeholder="VD: Anh Le">
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email:</label>
+        <input type="text" name="email" id="email" rules="required|email" class="form-control" placeholder="VD: email@domain.com">
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Mật khẩu:</label>
+        <input type="password" name="password" id="password" rules="required|min:6" class="form-control" placeholder="Nhập mật khẩu">
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="password_confirmation" class="form-label">Nhập lại mật khẩu:</label>
+        <input type="password" name="password_confirmation" rules="required|confirm:#password" id="password_confirmation" class="form-control" placeholder="Nhập lại mật khẩu">
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="province" class="form-label">Tỉnh thành phố</label>
+        <select type="province" name="province" rules="required" class="form-control" > 
+          <option value ="">Chọn tỉnh/TP</option>
+          <option value ="hanoi">Hà nội</option>
+          <option value ="vungtau">Vũng tàu</option>
+        </select>
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="avatar" class="form-label">Ảnh đại diện</label>
+        <input type="file" name="avatar" id="avatar" rules="required" class="form-control" >
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Giới tính</label>
+        <div>
+          <input type="radio" name="gender" value="male"  class="form-control" checked>
+          Nam
+        </div>
+        <div>
+          <input type="radio" name="gender" value="female"  class="form-control">
+          Nữ
+        </div>
+        <div>
+          <input type="radio" name="gender" value="other"  class="form-control">
+          Khác
+        </div>
+        <span class="form-message"></span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Sở thích</label>
+        <div>
+          <input type="checkbox" name="sport" value="football">Bóng đá
+        </div>
+        <div>
+          <input type="checkbox" name="sport" value="swimming">Bơi lội
+        </div>
+        <div>
+          <input type="checkbox" name="sport" value="basketball">Bóng rổ
+        </div>
+      </div>
+
+  
+      <button class="form-submit">Đăng ký</button>
+    </form>
+
+    
+  </div>
+  
+  <script src="./validator.js"></script>
+  <script > 
+    Validator('#register-form', {
+      onSubmit(data) {
+        // CallApi
+        console.log(data);
+      }
+    });
+  </script>
+  
+</body>
+</html>
