@@ -89,12 +89,10 @@
   
   <script src="./validator.js"></script>
   <script > 
-    Validator('#register-form', {
-      onSubmit(data) {
-        // CallApi
-        console.log(data);
-      }
-    });
+    const form = new Validator('#register-form');
+    form.onSubmit = function(data) {
+      console.log(data);
+    }
   </script>
   
 </body>

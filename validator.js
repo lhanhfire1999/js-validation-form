@@ -1,4 +1,4 @@
-function Validator(selector, options = {}){
+function Validator(selector){
   const formRules = {};
   const validatorRules = {
     required(value){
@@ -54,10 +54,8 @@ function Validator(selector, options = {}){
       let errorMessage;
       
       for(const rule of rules){
-        if(rule(e.target.value)){
-          errorMessage = rule(e.target.value);
-          break;
-        }
+        errorMessage = rule(e.target.value);
+        if(errorMessage) break;
       }
 
       const formGroupElement = e.target.closest('.form-group');
@@ -88,7 +86,6 @@ function Validator(selector, options = {}){
   // handle submit form
   formElement.onsubmit = (e)=> {
     e.preventDefault();
-
     const inputs = formElement.querySelectorAll('[name][rules]');
     let isValidForm = true;
 
@@ -99,7 +96,7 @@ function Validator(selector, options = {}){
     }
 
     if(isValidForm){
-      if(typeof options.onSubmit === 'function'){
+      if(typeof this.onSubmit === 'function'){
         const enableInputs = formElement.querySelectorAll('[name]:not([disabled])');
 
         const formValues =  Array.from(enableInputs).reduce((values, input) => {
@@ -115,7 +112,7 @@ function Validator(selector, options = {}){
                 values[input.name] = '';
               }
               break;
-              
+
             case 'radio':
               if(input.matches(':checked')){
                 values[input.name] = input.value;
@@ -135,8 +132,11 @@ function Validator(selector, options = {}){
           return values;
         }, {});
 
-        options.onSubmit(formValues);
+        this.onSubmit(formValues);
       }
-    }
+      else{
+        formElement.submit();
+      }
+    } 
   };
 }
